@@ -31,6 +31,9 @@ window.addEventListener("mousemove", (wEvent) => {
     const radiusBottom = 5
     const height = 20
     const radialSegments  = 15;  
+    const sphereGeometry = new THREE.SphereGeometry( 25, 15, 15 );
+    const material = new THREE.MeshPhongMaterial( {color: 0xffff00, shading: THREE.FlatShading,} );
+    const sphere = new THREE.Mesh( sphereGeometry, material );
     const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
     
     
@@ -52,8 +55,10 @@ window.addEventListener("mousemove", (wEvent) => {
     
     cubes.forEach((item, index) => {
         scene.add(item);
+        scene.add(sphere);
         animateCube(item, index + 1)
     })
+    
     
     
     
@@ -71,6 +76,8 @@ window.addEventListener("mousemove", (wEvent) => {
         const render = () => {
             cube.rotation.x += (wEvent.clientX + index * 50) / 10000
             cube.rotation.y += (wEvent.clientY + index * 50) / 10000
+            sphere.rotation.x += (wEvent.clientX + index * 50) / 50000
+            sphere.rotation.y += (wEvent.clientY + index * 50) / 50000
     
             const canvas = renderer.domElement;
             camera.aspect = canvas.clientWidth / canvas.clientHeight;
