@@ -31,11 +31,16 @@ window.addEventListener("mousemove", (wEvent) => {
     const radiusBottom = 5
     const height = 20
     const radialSegments  = 15;  
-    const sphereGeometry = new THREE.SphereGeometry( 25, 15, 15 );
-    const material = new THREE.MeshPhongMaterial( {color: 0xffff00, shading: THREE.FlatShading,} );
+    const sphereGeometry = new THREE.SphereGeometry( 15, 15, 15 );
+    const material = new THREE.MeshPhongMaterial( {color: '#1c9fb1', shading: THREE.FlatShading,} );
     const sphere = new THREE.Mesh( sphereGeometry, material );
     const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
     
+    let spheregeo = new THREE.EdgesGeometry( sphere.geometry );
+    let spherelineMatarial = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+    let spherewireframe = new THREE.LineSegments( spheregeo, spherelineMatarial );
+
+    sphere.add(spherewireframe)
     
     const newCube = (color, xPosition) => {
         const metarial = new THREE.MeshPhongMaterial({
