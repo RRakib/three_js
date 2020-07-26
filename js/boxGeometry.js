@@ -24,29 +24,31 @@ window.addEventListener("mousemove", (wEvent) => {
     
     
     const scene = new THREE.Scene()
-    scene.background = new THREE.Color('#ffffff')
+    scene.background = new THREE.Color('#c3c3c3')
     
     
-    const boxWidth = 15
-    const boxHeight = 15
-    const boxDepth = 15
-    const widthSegments = 4;  
-    const heightSegments = 4;  
-    const depthSegments = 4;
-    const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth, widthSegments,
-        heightSegments,
-        depthSegments);
+    const radiusTop = 5
+    const radiusBottom = 5
+    const height = 20
+    const radialSegments  = 15;  
+    const geometry = new THREE.CylinderGeometry(radiusTop, radiusBottom, height, radialSegments);
     
     
     const newCube = (color, xPosition) => {
-        const metarial = new THREE.MeshPhongMaterial({color})
+        const metarial = new THREE.MeshPhongMaterial({
+            color, 
+            shading: THREE.FlatShading,})
         const cube = new THREE.Mesh(geometry, metarial);
+        var geo = new THREE.EdgesGeometry( cube.geometry );
+        var lineMatarial = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
+        var wireframe = new THREE.LineSegments( geo, lineMatarial );
+        cube.add(wireframe)
         cube.position.x = xPosition
         
         return cube
     }
     
-    const cubes = [newCube('#1c9fba', -25), newCube('#1c9fba', 0), newCube('#1c9fba', 25)]
+    const cubes = [newCube('#1c9fb1', -25), newCube('#1c9fbb', 0), newCube('#1c9fb2', 25)]
     
     cubes.forEach((item, index) => {
         scene.add(item);
