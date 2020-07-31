@@ -24,7 +24,7 @@ scene.background = new THREE.Color('#dddddd');
 
 // Car
 const carSpace = new THREE.Object3D();
-carSpace.position.x = 20
+carSpace.position.x = 22
 scene.add(carSpace)
 
 
@@ -104,6 +104,23 @@ carSpace.add(cube)
         
         carSpace.add(tireMesh)
     })
+
+  window.addEventListener('keydown', (e) => {
+    if(e.keyCode === 87 && carSpace.position.x > -22){
+        carSpace.position.x -= .3
+    } 
+    else if (e.keyCode === 83 && carSpace.position.x < 22){
+        carSpace.position.x += .3
+    }  
+    else if (e.keyCode === 68){
+        carSpace.rotation.y -= .3
+        carSpace.position.z -= .3
+    }  
+    else if (e.keyCode === 65){
+        carSpace.rotation.y += .3
+        carSpace.position.z += .3
+    }  
+  })
 
 function render(time){
     // time *= .0007;
