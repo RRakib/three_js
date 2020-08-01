@@ -1,44 +1,20 @@
-import React, {useState, useRef} from 'react';
-import {useSpring, animated} from 'react-spring/three';
+import React, {useRef} from 'react'
+import {useFrame} from 'react-three-fiber';
+import {useSpring} from 'react-spring/three';
 
+export default function Box() {
+    const boxRef = useRef()
 
-export const Box = () => {
-    const [state, setState] = useState({
-        hovered: false,
-        active: false
-    });
+    // useSpring()
 
-    const {hovered, active} = state;
-    
-    const props = useSpring({
-        color: hovered ? "gray" : "hotpink",
-        size: active ? [1.5,1.5,1.5] : [1,1,1],
+    useFrame(() => {
+        boxRef.current.rotation.x += .01;
+        boxRef.current.rotation.y += .01;
     })
-
-    const activePointer = () => {
-        setState((prevState) => ({
-            ...state,
-            active: !prevState.active
-        }))
-    }
-
-    const chnagePointer = () => {
-        setState((prevState) => ({
-            ...state,
-            hovered: !prevState.hovered
-        }))
-    }
-
     return (
-        <animated.mesh 
-            onPointerOver={chnagePointer} 
-            onPointerOut={chnagePointer} 
-            onPointerDown={activePointer} 
-            scale={props.size}>
-            <animated.boxBufferGeometry attach="geometry" args={[1,1,1]} />
-            <animated.meshBasicMaterial 
-                attach="material" 
-                color={props.color} />
-        </animated.mesh>
+        <mesh ref={boxRef} scale={[30,30,30]} receiveShadow>
+            <boxGeometry attach="geometry" args={[1,1,1]} />
+            <meshPhysicalMaterial attach="material" color={'red'} />
+        </mesh>
     )
 }
