@@ -8,7 +8,6 @@ const Control = () => {
     const {camera, gl} = useThree();
     const orbitRef = useRef()
     useFrame(() => {
-        console.log(camera)
         orbitRef.current.update()
     })
     return (

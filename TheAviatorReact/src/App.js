@@ -15,7 +15,7 @@ function App() {
         gl.shadowMap.enabled = true;
       }}
       camera={{fov: 60, near: 1, far: 10000, position: [0,40,170]}}>
-      <fog attach="fog" args={['#bae4e4', -20, 950]} />
+      <fog attach="fog" args={['#bae4e4', 50, 950]} />
       <hemisphereLight args={[ 0xaaaaaa, 0x000000, .9]}/>
       <ambientLight args={[0xffffff, .1]} />
       <directionalLight  
@@ -32,7 +32,10 @@ function App() {
         shadowMapWidth={2048}
         shadowMapHeight={2048}
        />
-      <Airplane />
+      <Airplane bodyColor={'#EE9393'} position={{x: -320, y: -50, z: 0}} zoom={-320} />
+      <Airplane bodyColor={'#8F8BFF'} zoom={-60} control />
+      <Airplane bodyColor={'#1CA4C7'} position={{x: 150, y: 80, z: 0}} zoom={-150} />
+      <Airplane bodyColor={'#DB9EE2'} position={{x: 300, y: -110, z: 0}} zoom={-230} />
       <Sky />
       <Ground />
     </Canvas>

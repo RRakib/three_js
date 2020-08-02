@@ -38,7 +38,7 @@ export default function Ground() {
     useEffect(() => {
         console.log(seaRef.current.vertices)
         seaRef.current.mergeVertices();
-        groundRef.current.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/1.8));
+        groundRef.current.rotation.x = -Math.PI/1.8;
         groundRef.current.position.y = -690 
         groundRef.current.position.z = 200 
         let l = seaRef.current.vertices.length;
