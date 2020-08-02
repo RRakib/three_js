@@ -10,9 +10,11 @@ export default function Airplane() {
 
     useFrame(() => {
         propeller.current.rotation.x += .3;
-        planeRef.current.position.y = normalize(mousePos.y,-.75,.30,-90, 75);
-        planeRef.current.position.x = normalize(mousePos.x,-.95,.75,-130, 130);
-        planeRef.current.position.z = -40;
+        planeRef.current.position.y += (normalize(mousePos.y,-.75,.30,-100, 75) - planeRef.current.position.y) * .1;
+        // planeRef.current.position.x = normalize(mousePos.x,-.95,.75,-130, 130);
+        planeRef.current.position.z = -60;
+        planeRef.current.rotation.z = (normalize(mousePos.y,-.75,.30,-90, 75) - planeRef.current.position.y) * .0128;
+        planeRef.current.rotation.x = (planeRef.current.position.y - normalize(mousePos.y,-.75,.30,-90, 75)) * .0064;
     });
 
     useEffect(() => {
@@ -54,7 +56,7 @@ export default function Airplane() {
                 <meshPhongMaterial attach="material" color={'#8F8BFF'} flatShading />
             </mesh> 
             <mesh castShadow receiveShadow position={[50,0,0]} rotation={[0,0,10.96]}>
-                <coneGeometry attach={"geometry"} args={[24,50,8]} />   
+                <coneGeometry attach={"geometry"} args={[23,50,8]} />   
                 <meshPhongMaterial attach="material" color={0xd8d0d1} flatShading />
             </mesh> 
             <mesh castShadow receiveShadow position={[-45,25,0]}>

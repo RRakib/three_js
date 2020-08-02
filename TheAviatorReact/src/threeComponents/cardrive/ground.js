@@ -61,7 +61,7 @@ export default function Ground() {
     return (
         <mesh receiveShadow ref={groundRef}>
             <cylinderGeometry attach="geometry" args={[600,600,800,40, 10]} ref={seaRef} />
-            <meshPhongMaterial attach="material" color={'#7CE6B5'} transparent opacity={.6} flatShading />
+            <meshPhongMaterial attach="material" color={'#58CC96'} transparent opacity={.6} flatShading />
         </mesh>
     )
 }
