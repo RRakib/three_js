@@ -6,23 +6,7 @@ import Sky from './threeComponents/cardrive/Sky';
 import Airplane from './threeComponents/cardrive/Airplane';
 
 function App() {
-
-  let [mousePos, setMousepos] = useState({x: 0, y: 0});
   
-  useEffect(() => {
-    document.addEventListener('mousemove', handleMouseMove);
-  })
-
-  const handleMouseMove = (event) => {
-    
-    var tx = -1 + (event.clientX / window.innerWidth)*2;
-    
-    var ty = 1 - (event.clientY / window.innerHeight)*2;
-    
-    setMousepos({x:tx, y:ty});
-  }
-
-
   return (
     <Canvas
       gl={{alpha: true, antialias: true}}
@@ -31,11 +15,12 @@ function App() {
         gl.shadowMap.enabled = true;
       }}
       camera={{fov: 60, near: 1, far: 10000, position: [0,40,170]}}>
-      <fog attach="fog" args={[0xf7d9aa, 0, 950]} />
+      <fog attach="fog" args={['#bae4e4', -20, 950]} />
       <hemisphereLight args={[ 0xaaaaaa, 0x000000, .9]}/>
+      <ambientLight args={[0xffffff, .1]} />
       <directionalLight  
         color={0xffffff} 
-        intensity={.9} 
+        intensity={.6} 
         castShadow 
         position={[150, 350, 250]}
         shadowCameraBottom={-400}
@@ -47,7 +32,7 @@ function App() {
         shadowMapWidth={2048}
         shadowMapHeight={2048}
        />
-      <Airplane mouseXpos={mousePos.x} mouseYpos={mousePos.y} />
+      <Airplane />
       <Sky />
       <Ground />
     </Canvas>

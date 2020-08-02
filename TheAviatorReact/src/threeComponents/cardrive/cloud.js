@@ -15,8 +15,8 @@ export default function Cloud({posY, posX, posZ, rotZ, scaleP}) {
                 scale={[scale,scale,scale]} 
                 position={[i*15, Math.random()*10, Math.random()*10]} 
                 rotation={[0, Math.random()*Math.PI*2, Math.random()*Math.PI*2]}>
-                    <boxGeometry attach="geometry" args={[20,20,20]} />
-                    <meshPhongMaterial attach="material" color={0xd8d0d1} />
+                    <sphereGeometry attach="geometry" args={[18,5,3]} />
+                    <meshPhongMaterial attach="material" color={0xd8d0d1} flatShading />
             </mesh>
         )
     } 

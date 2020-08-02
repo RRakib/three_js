@@ -7,7 +7,7 @@ export default function Sky() {
     let skyRef = useRef()
 
     useFrame(() => {
-        skyRef.current.rotation.z += .004
+        skyRef.current.rotation.z += .008
     })
 
     let nClouds = 20;
@@ -39,7 +39,7 @@ export default function Sky() {
 	}  
 
     return (
-        <group position={[0,-800,-50]} ref={skyRef}>
+        <group position={[0,-750,-10]} ref={skyRef}>
             {sky}
         </group>
     )
