@@ -4,6 +4,8 @@ import {Canvas} from 'react-three-fiber';
 import Ground from './threeComponents/cardrive/ground';
 import Sky from './threeComponents/cardrive/Sky';
 import Airplane from './threeComponents/cardrive/Airplane';
+import Control from './control/control'
+
 
 function App() {
   
@@ -32,10 +34,11 @@ function App() {
         shadowMapWidth={2048}
         shadowMapHeight={2048}
        />
-      <Airplane bodyColor={'#EE9393'} position={{x: -320, y: -50, z: 0}} zoom={-320} />
+       {/* <Control /> */}
+      <Airplane bodyColor={'#EE9393'} controlOther={.095} position={{x: -420, y: -50, z: 0}} zoom={-470} />
       <Airplane bodyColor={'#8F8BFF'} zoom={-60} control />
-      <Airplane bodyColor={'#1CA4C7'} position={{x: 150, y: 80, z: 0}} zoom={-150} />
-      <Airplane bodyColor={'#DB9EE2'} position={{x: 300, y: -110, z: 0}} zoom={-230} />
+      <Airplane bodyColor={'#1CA4C7'} controlOther={.07} position={{x: 150, y: 80, z: 0}} zoom={-300} />
+      <Airplane bodyColor={'#DB9EE2'} controlOther={-.08} position={{x: 450, y: -110, z: 0}} zoom={-450} />
       <Sky />
       <Ground />
     </Canvas>

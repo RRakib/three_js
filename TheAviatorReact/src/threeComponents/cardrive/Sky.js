@@ -21,7 +21,6 @@ export default function Sky() {
 		// Trigonometry!!! I hope you remember what you've learned in Math :)
 		// in case you don't: 
 		// we are simply converting polar coordinates (angle, distance) into Cartesian coordinates (x, y)
-		console.log(Math.cos(a)*h,Math.sin(a)*h)
 		let posY = Math.sin(a)*h;
 		let posX = Math.cos(a)*h;
 

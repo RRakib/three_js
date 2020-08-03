@@ -2,8 +2,10 @@ import React, {useRef, useEffect} from 'react';
 import {useFrame} from "react-three-fiber";
 
 let mousePos = { x: 0, y: 0 };
+let randomVal = .001;
+let randomValOther = 0
 
-export default function Airplane({position, zoom, control, bodyColor}) {
+export default function Airplane({position, zoom, control, bodyColor, controlOther}) {
     let propeller = useRef()
     let planeRef = useRef()
     let planeBody = useRef()
@@ -16,10 +18,22 @@ export default function Airplane({position, zoom, control, bodyColor}) {
             planeRef.current.position.y = position.y;
         }
         if(control){
-            planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
+            console.log(planeRef.current.position.y )
+            planeRef.current.position.y = normalize(mousePos.y + .2,-.75,.30,-80, 75);
+            // planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
             // planeRef.current.position.x = normalize(mousePos.x,-.95,.75,-130, 130);
             planeRef.current.rotation.z = (normalize(mousePos.y + .25,-.75,.30,-90, 75) - planeRef.current.position.y) * .0128;
             planeRef.current.rotation.x = (planeRef.current.position.y - normalize(mousePos.y + .25,-.75,.30,-90, 75)) * .0064;
+        }
+        if(controlOther){
+            if(randomValOther >= .2 || randomValOther <= -1){
+                randomVal = -randomVal
+            }
+
+            randomValOther += randomVal;
+            planeRef.current.position.y += (normalize(randomValOther + .2,-.75,.30,-1000, 75) - planeRef.current.position.y) * controlOther;
+            planeRef.current.rotation.z = (normalize(randomValOther,-.75,.30,-90, 75) - planeRef.current.position.y) * .00128;
+            planeRef.current.rotation.x = (planeRef.current.position.y - normalize(randomValOther,-.65,.10,-(randomValOther * 30), 75)) * .0064;
         }
     });
 
