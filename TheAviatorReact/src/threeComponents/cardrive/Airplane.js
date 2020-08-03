@@ -18,9 +18,7 @@ export default function Airplane({position, zoom, control, bodyColor, controlOth
             planeRef.current.position.y = position.y;
         }
         if(control){
-            console.log(planeRef.current.position.y )
-            planeRef.current.position.y = normalize(mousePos.y + .2,-.75,.30,-80, 75);
-            // planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
+            planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
             // planeRef.current.position.x = normalize(mousePos.x,-.95,.75,-130, 130);
             planeRef.current.rotation.z = (normalize(mousePos.y + .25,-.75,.30,-90, 75) - planeRef.current.position.y) * .0128;
             planeRef.current.rotation.x = (planeRef.current.position.y - normalize(mousePos.y + .25,-.75,.30,-90, 75)) * .0064;
@@ -61,12 +59,11 @@ export default function Airplane({position, zoom, control, bodyColor, controlOth
 
 
     const normalize = (v,vmin,vmax,tmin, tmax) => {
-        let nv = Math.max(Math.min(v,vmax), vmin);
+        let nv = Math.max(Math.min(v,vmax), vmin); // Mathametical if / else that checks if my mouse value is greater/smaller then the value i provide and restrict accordingly.
         let dv = vmax-vmin;
-        let pc = (nv-vmin)/dv;
-        let dt = tmax-tmin;
-        let tv = tmin + (pc*dt);
-        return tv;
+        let normalizeFormula = (nv-vmin) / dv; // This is normalize formula
+        let pc = normalizeFormula * (tmax - tmin) + tmin; // As mouse points are too small and i need to fly the plane for the full height 
+        return pc;
       }
 
     return (
