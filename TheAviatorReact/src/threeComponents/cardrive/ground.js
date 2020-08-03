@@ -19,8 +19,8 @@ export default function Ground() {
             let vprops = waves[i];
             
             // update the position of the vertex
-            v.x = vprops.x + Math.cos(vprops.ang)*vprops.amp * 2;
-            v.y = vprops.y + Math.sin(vprops.ang)*vprops.amp * 2;
+            v.x = vprops.x + Math.cos(vprops.ang)*vprops.amp;
+            v.y = vprops.y + Math.sin(vprops.ang)*vprops.amp;
     
             // increment the angle for the next frame
             vprops.ang += vprops.speed;
@@ -50,7 +50,7 @@ export default function Ground() {
                         x:v.x,
                         z:v.z,
                         ang:Math.random()*Math.PI*2,
-                        amp:5 + Math.random()*15,
+                        amp:5 + Math.random()*18,
                         speed:0.016 + Math.random()*0.032});
         };
     }, []);

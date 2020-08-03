@@ -1,5 +1,5 @@
 import React, {useRef, useEffect} from 'react';
-import {useFrame} from "react-three-fiber";
+import {useFrame, useThree} from "react-three-fiber";
 
 let mousePos = { x: 0, y: 0 };
 let randomVal = .001;
@@ -10,6 +10,9 @@ export default function Airplane({position, zoom, control, bodyColor, controlOth
     let planeRef = useRef()
     let planeBody = useRef()
 
+
+    const {camera} = useThree()
+
     useFrame(() => {
         propeller.current.rotation.x += .5;
         planeRef.current.position.z = zoom;
@@ -19,9 +22,8 @@ export default function Airplane({position, zoom, control, bodyColor, controlOth
         }
         if(control){
             planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
-            // planeRef.current.position.x = normalize(mousePos.x,-.95,.75,-130, 130);
+            camera.position.z += (normalize(mousePos.x,-1,1,130, 300) - camera.position.z) * .1;
             planeRef.current.rotation.z = (normalize(mousePos.y + .25,-.75,.30,-90, 75) - planeRef.current.position.y) * .0128;
-            planeRef.current.rotation.x = (planeRef.current.position.y - normalize(mousePos.y + .25,-.75,.30,-90, 75)) * .0064;
         }
         if(controlOther){
             if(randomValOther >= .2 || randomValOther <= -1){
