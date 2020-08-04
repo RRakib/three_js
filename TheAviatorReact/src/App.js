@@ -5,6 +5,7 @@ import Ground from './threeComponents/cardrive/ground';
 import Sky from './threeComponents/cardrive/Sky';
 import Airplane from './threeComponents/cardrive/Airplane';
 import Control from './control/control'
+import Enemy from './threeComponents/cardrive/Enemy';
 
 
 function App() {
@@ -13,7 +14,6 @@ function App() {
     <Canvas
       gl={{alpha: true, antialias: true}}
       onCreated={({gl, camera}) => {
-        console.log(camera)
         gl.shadowMap.enabled = true;
       }}
       camera={{fov: 60, near: 1, far: 10000, position: [0,40,170]}}>
@@ -40,6 +40,7 @@ function App() {
       <Airplane bodyColor={'#1CA4C7'} controlOther={.07} position={{x: 150, y: 80, z: 0}} zoom={-300} />
       <Airplane bodyColor={'#DB9EE2'} controlOther={-.08} position={{x: 450, y: -110, z: 0}} zoom={-450} />
       <Sky />
+      <Enemy />
       <Ground />
     </Canvas>
   );

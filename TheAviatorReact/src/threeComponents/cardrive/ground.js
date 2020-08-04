@@ -36,7 +36,6 @@ export default function Ground() {
     })
 
     useEffect(() => {
-        console.log(seaRef.current.vertices)
         seaRef.current.mergeVertices();
         groundRef.current.rotation.x = -Math.PI/1.8;
         groundRef.current.position.y = -690 
