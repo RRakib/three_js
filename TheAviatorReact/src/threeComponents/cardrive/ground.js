@@ -49,7 +49,7 @@ export default function Ground() {
                         x:v.x,
                         z:v.z,
                         ang:Math.random()*Math.PI*2,
-                        amp:5 + Math.random()*18,
+                        amp:5 + Math.random()*20,
                         speed:0.016 + Math.random()*0.032});
         };
     }, []);

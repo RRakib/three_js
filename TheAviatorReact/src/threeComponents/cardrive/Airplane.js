@@ -23,6 +23,7 @@ export default function Airplane({position, zoom, control, bodyColor, controlOth
         if(control){
             planeRef.current.position.y += (normalize(mousePos.y + .2,-.75,.30,-80, 75) - planeRef.current.position.y) * .1;
             camera.position.z += (normalize(mousePos.x,-1,1,130, 300) - camera.position.z) * .1;
+            camera.position.y += (normalize(mousePos.y,-1,1,-30, 125) - camera.position.y) * .1;
             planeRef.current.rotation.z = (normalize(mousePos.y + .25,-.75,.30,-90, 75) - planeRef.current.position.y) * .0128;
         }
         if(controlOther){
